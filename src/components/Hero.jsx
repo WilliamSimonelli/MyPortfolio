@@ -14,7 +14,8 @@ import {
   LinkedIn as LinkedInIcon,
   Email as EmailIcon,
   KeyboardArrowDown as ArrowDownIcon,
-} from '@mui/icons-material';const Hero = () => {
+} from '@mui/icons-material';
+import profilePhoto from '../assets/portfolio-photo.jpeg';const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -72,7 +73,7 @@ import {
           {/* Avatar */}
           <Zoom in={isVisible} timeout={1000}>
             <Avatar
-              src="https://github.com/WilliamSimonelli.png"
+              src={profilePhoto}
               alt="William Simonelli"
               sx={{
                 width: { xs: 200, md: 300 },
