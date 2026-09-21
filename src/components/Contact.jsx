@@ -34,15 +34,15 @@ const Contact = () => {
     {
       icon: <EmailIcon fontSize="large" />,
       title: 'Email',
-      value: 'williamsimonelli10@gmail.com',
-      link: 'mailto:williamsimonelli10@gmail.com',
+      value: 'williamsimonelli.r@gmail.com',
+      link: 'mailto:williamsimonelli.r@gmail.com',
       color: 'primary',
     },
     {
       icon: <PhoneIcon fontSize="large" />,
       title: 'Phone',
-      value: '+55 (11) 99999-8888',
-      link: 'tel:+5511999998888',
+      value: '+55 (11) 96409-0708',
+      link: 'tel:+5511964090708',
       color: 'secondary',
     },
     {
@@ -236,7 +236,7 @@ const Contact = () => {
                   <LinkedInIcon />
                 </IconButton>
                 <IconButton
-                  href="mailto:williamsimonelli@example.com"
+                  href="mailto:williamsimonelli.r@gmail.com"
                   sx={{
                     backgroundColor: 'rgba(255, 255, 255, 0.1)',
                     color: 'text.secondary',

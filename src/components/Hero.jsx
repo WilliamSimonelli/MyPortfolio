@@ -41,6 +41,8 @@ import profilePhoto from '../assets/portfolio-photo.jpeg';const Hero = () => {
         minHeight: '100vh',
         display: 'flex',
         alignItems: 'center',
+        pt: { xs: '80px', md: '80px' },
+        pb: { xs: 6, md: 0 },
         background: 'linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(255, 107, 53, 0.1) 100%)',
         position: 'relative',
         overflow: 'hidden',
@@ -201,7 +203,7 @@ import profilePhoto from '../assets/portfolio-photo.jpeg';const Hero = () => {
                 <Button
                   variant="outlined"
                   size="large"
-                  href="mailto:williamsimonelli10@gmail.com"
+                  href="mailto:williamsimonelli.r@gmail.com"
                   sx={{
                     borderColor: 'primary.main',
                     color: 'primary.main',
@@ -250,7 +252,7 @@ import profilePhoto from '../assets/portfolio-photo.jpeg';const Hero = () => {
                   <LinkedInIcon fontSize="large" />
                 </IconButton>
                 <IconButton
-                  href="mailto:williamsimonelli@example.com"
+                  href="mailto:williamsimonelli.r@gmail.com"
                   sx={{
                     color: 'text.secondary',
                     '&:hover': {

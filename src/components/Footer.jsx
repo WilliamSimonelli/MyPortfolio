@@ -151,7 +151,7 @@ const Footer = () => {
                   <LinkedInIcon />
                 </IconButton>
                 <IconButton
-                  href="mailto:williamsimonelli10@gmail.com"
+                  href="mailto:williamsimonelli.r@gmail.com"
                   sx={{
                     color: 'text.secondary',
                     backgroundColor: 'rgba(255, 255, 255, 0.05)',
