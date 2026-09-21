@@ -14,45 +14,56 @@ import {
   useTheme,
 } from '@mui/material';
 import { Menu as MenuIcon, Close as CloseIcon } from '@mui/icons-material';
+import { useLanguage } from '../context/LanguageContext';
 
 const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const { lang, toggleLang, t } = useLanguage();
+  const nav = t('nav');
 
   const menuItems = [
-    { label: 'About', href: '#about' },
-    { label: 'Experience', href: '#experience' },
-    { label: 'Skills', href: '#skills' },
-    { label: 'Projects', href: '#projects' },
-    { label: 'Contact', href: '#contact' },
+    { label: nav.about, href: '#about' },
+    { label: nav.experience, href: '#experience' },
+    { label: nav.skills, href: '#skills' },
+    { label: nav.contact, href: '#contact' },
   ];
 
   useEffect(() => {
-    const handleScroll = () => {
-      const isScrolled = window.scrollY > 50;
-      setScrolled(isScrolled);
-    };
-
+    const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
+  const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
 
   const scrollToSection = (href) => {
     const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-      });
-    }
+    if (element) element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     setMobileOpen(false);
   };
+
+  const LangToggle = () => (
+    <Button
+      onClick={toggleLang}
+      size="small"
+      variant="outlined"
+      sx={{
+        minWidth: 48,
+        ml: 1,
+        borderColor: 'primary.main',
+        color: 'primary.main',
+        fontWeight: 700,
+        fontSize: '0.75rem',
+        py: 0.5,
+        '&:hover': { backgroundColor: 'rgba(0, 212, 255, 0.1)' },
+      }}
+    >
+      {lang === 'en' ? 'PT' : 'EN'}
+    </Button>
+  );
 
   const drawer = (
     <Box sx={{ width: 250, pt: 2 }}>
@@ -63,33 +74,27 @@ const Header = () => {
       </Box>
       <List>
         {menuItems.map((item) => (
-          <ListItem 
-            button 
-            key={item.label}
-            onClick={() => scrollToSection(item.href)}
-          >
-            <ListItemText 
-              primary={item.label} 
-              sx={{ 
-                color: 'text.primary',
-                '& .MuiTypography-root': { fontWeight: 500 }
-              }}
+          <ListItem button key={item.label} onClick={() => scrollToSection(item.href)}>
+            <ListItemText
+              primary={item.label}
+              sx={{ color: 'text.primary', '& .MuiTypography-root': { fontWeight: 500 } }}
             />
           </ListItem>
         ))}
+        <ListItem>
+          <LangToggle />
+        </ListItem>
       </List>
     </Box>
   );
 
   return (
     <>
-      <AppBar 
-        position="fixed" 
+      <AppBar
+        position="fixed"
         elevation={scrolled ? 4 : 0}
         sx={{
-          backgroundColor: scrolled 
-            ? 'rgba(15, 15, 15, 0.95)' 
-            : 'rgba(15, 15, 15, 0.7)',
+          backgroundColor: scrolled ? 'rgba(15, 15, 15, 0.95)' : 'rgba(15, 15, 15, 0.7)',
           transition: 'all 0.3s ease-in-out',
         }}
       >
@@ -107,22 +112,17 @@ const Header = () => {
               WebkitTextFillColor: 'transparent',
               cursor: 'pointer',
             }}
-            onClick={() => scrollToSection('#hero')}
+            onClick={() => scrollToSection('#about')}
           >
             William Simonelli
           </Typography>
 
           {isMobile ? (
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              edge="start"
-              onClick={handleDrawerToggle}
-            >
+            <IconButton color="inherit" aria-label="open drawer" edge="start" onClick={handleDrawerToggle}>
               <MenuIcon />
             </IconButton>
           ) : (
-            <Box sx={{ display: 'flex', gap: 1 }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
               {menuItems.map((item) => (
                 <Button
                   key={item.label}
@@ -132,9 +132,7 @@ const Header = () => {
                     mx: 1,
                     fontWeight: 500,
                     position: 'relative',
-                    '&:hover': {
-                      backgroundColor: 'rgba(0, 212, 255, 0.1)',
-                    },
+                    '&:hover': { backgroundColor: 'rgba(0, 212, 255, 0.1)' },
                     '&::after': {
                       content: '""',
                       position: 'absolute',
@@ -146,14 +144,13 @@ const Header = () => {
                       transition: 'all 0.3s ease-in-out',
                       transform: 'translateX(-50%)',
                     },
-                    '&:hover::after': {
-                      width: '80%',
-                    },
+                    '&:hover::after': { width: '80%' },
                   }}
                 >
                   {item.label}
                 </Button>
               ))}
+              <LangToggle />
             </Box>
           )}
         </Toolbar>
@@ -164,16 +161,10 @@ const Header = () => {
         anchor="right"
         open={mobileOpen}
         onClose={handleDrawerToggle}
-        ModalProps={{
-          keepMounted: true,
-        }}
+        ModalProps={{ keepMounted: true }}
         sx={{
           display: { xs: 'block', md: 'none' },
-          '& .MuiDrawer-paper': {
-            boxSizing: 'border-box',
-            width: 250,
-            backgroundColor: 'background.paper',
-          },
+          '& .MuiDrawer-paper': { boxSizing: 'border-box', width: 250, backgroundColor: 'background.paper' },
         }}
       >
         {drawer}

@@ -15,8 +15,13 @@ import {
   Email as EmailIcon,
   KeyboardArrowDown as ArrowDownIcon,
 } from '@mui/icons-material';
-import profilePhoto from '../assets/portfolio-photo.jpeg';const Hero = () => {
+import profilePhoto from '../assets/portfolio-photo.jpeg';
+import { useLanguage } from '../context/LanguageContext';
+
+const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const { t } = useLanguage();
+  const hero = t('hero');
 
   useEffect(() => {
     setIsVisible(true);
@@ -24,19 +29,12 @@ import profilePhoto from '../assets/portfolio-photo.jpeg';const Hero = () => {
 
   const scrollToExperience = () => {
     const element = document.querySelector('#experience');
-    if (element) {
-      element.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-      });
-    }
+    if (element) element.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
-
-  const skills = ['React', 'JavaScript', 'Node.js', 'Python', 'TypeScript', 'AWS'];
 
   return (
     <Box
-      id="hero"
+      id="about"
       sx={{
         minHeight: '100vh',
         display: 'flex',
@@ -102,13 +100,9 @@ import profilePhoto from '../assets/portfolio-photo.jpeg';const Hero = () => {
                 variant="h4"
                 component="h2"
                 gutterBottom
-                sx={{
-                  color: 'primary.main',
-                  fontWeight: 600,
-                  mb: 2,
-                }}
+                sx={{ color: 'primary.main', fontWeight: 600, mb: 2 }}
               >
-                Hello, I'm
+                {hero.greeting}
               </Typography>
             </Zoom>
 
@@ -142,7 +136,7 @@ import profilePhoto from '../assets/portfolio-photo.jpeg';const Hero = () => {
                   mb: 4,
                 }}
               >
-                Full Stack Developer
+                {hero.title}
               </Typography>
             </Zoom>
 
@@ -150,34 +144,25 @@ import profilePhoto from '../assets/portfolio-photo.jpeg';const Hero = () => {
               <Typography
                 variant="body1"
                 paragraph
-                sx={{
-                  fontSize: '1.2rem',
-                  color: 'text.secondary',
-                  mb: 4,
-                  maxWidth: '500px',
-                }}
+                sx={{ fontSize: '1.1rem', color: 'text.secondary', mb: 4, maxWidth: '500px' }}
               >
-                Passionate Brazilian developer with expertise in modern web technologies. 
-                I create innovative solutions that combine beautiful design with 
-                robust functionality, always focused on user experience.
+                {hero.description}
               </Typography>
             </Zoom>
 
-            {/* Skills */}
+            {/* Skills chips */}
             <Zoom in={isVisible} timeout={2000}>
               <Box sx={{ mb: 4 }}>
-                {skills.map((skill, index) => (
+                {hero.chips.map((chip) => (
                   <Chip
-                    key={skill}
-                    label={skill}
+                    key={chip}
+                    label={chip}
                     sx={{
                       m: 0.5,
                       backgroundColor: 'rgba(0, 212, 255, 0.1)',
                       color: 'primary.main',
                       border: '1px solid rgba(0, 212, 255, 0.3)',
-                      '&:hover': {
-                        backgroundColor: 'rgba(0, 212, 255, 0.2)',
-                      },
+                      '&:hover': { backgroundColor: 'rgba(0, 212, 255, 0.2)' },
                     }}
                   />
                 ))}
@@ -186,66 +171,58 @@ import profilePhoto from '../assets/portfolio-photo.jpeg';const Hero = () => {
 
             {/* Action Buttons */}
             <Zoom in={isVisible} timeout={2200}>
-              <Box sx={{ display: 'flex', gap: 2, mb: 4, flexWrap: 'wrap' }}>
+              <Box sx={{ display: 'flex', gap: 2, mb: 4, flexWrap: 'wrap', justifyContent: { xs: 'center', md: 'flex-start' } }}>
                 <Button
                   variant="contained"
                   size="large"
                   onClick={scrollToExperience}
                   sx={{
                     background: 'linear-gradient(45deg, #00D4FF, #0099CC)',
-                    '&:hover': {
-                      background: 'linear-gradient(45deg, #0099CC, #007AA3)',
-                    },
+                    '&:hover': { background: 'linear-gradient(45deg, #0099CC, #007AA3)' },
                   }}
                 >
-                  View My Work
+                  {hero.viewWork}
                 </Button>
                 <Button
                   variant="outlined"
                   size="large"
-                  href="mailto:williamsimonelli.r@gmail.com"
+                  onClick={() => {
+                    const el = document.querySelector('#contact');
+                    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }}
                   sx={{
                     borderColor: 'primary.main',
                     color: 'primary.main',
-                    '&:hover': {
-                      borderColor: 'primary.light',
-                      backgroundColor: 'rgba(0, 212, 255, 0.1)',
-                    },
+                    '&:hover': { borderColor: 'primary.light', backgroundColor: 'rgba(0, 212, 255, 0.1)' },
                   }}
                 >
-                  Get In Touch
+                  {hero.getInTouch}
                 </Button>
               </Box>
             </Zoom>
 
             {/* Social Links */}
             <Zoom in={isVisible} timeout={2400}>
-              <Box sx={{ display: 'flex', gap: 2 }}>
+              <Box sx={{ display: 'flex', gap: 2, justifyContent: { xs: 'center', md: 'flex-start' } }}>
                 <IconButton
                   href="https://github.com/WilliamSimonelli"
                   target="_blank"
                   rel="noopener noreferrer"
                   sx={{
                     color: 'text.secondary',
-                    '&:hover': {
-                      color: 'primary.main',
-                      transform: 'translateY(-2px)',
-                    },
+                    '&:hover': { color: 'primary.main', transform: 'translateY(-2px)' },
                     transition: 'all 0.3s ease',
                   }}
                 >
                   <GitHubIcon fontSize="large" />
                 </IconButton>
                 <IconButton
-                  href="https://linkedin.com/in/william-simonelli"
+                  href="https://www.linkedin.com/in/william-simonelli/"
                   target="_blank"
                   rel="noopener noreferrer"
                   sx={{
                     color: 'text.secondary',
-                    '&:hover': {
-                      color: 'primary.main',
-                      transform: 'translateY(-2px)',
-                    },
+                    '&:hover': { color: 'primary.main', transform: 'translateY(-2px)' },
                     transition: 'all 0.3s ease',
                   }}
                 >
@@ -255,10 +232,7 @@ import profilePhoto from '../assets/portfolio-photo.jpeg';const Hero = () => {
                   href="mailto:williamsimonelli.r@gmail.com"
                   sx={{
                     color: 'text.secondary',
-                    '&:hover': {
-                      color: 'primary.main',
-                      transform: 'translateY(-2px)',
-                    },
+                    '&:hover': { color: 'primary.main', transform: 'translateY(-2px)' },
                     transition: 'all 0.3s ease',
                   }}
                 >
@@ -276,27 +250,21 @@ import profilePhoto from '../assets/portfolio-photo.jpeg';const Hero = () => {
             bottom: 30,
             left: '50%',
             transform: 'translateX(-50%)',
-            display: 'flex',
+            display: { xs: 'none', md: 'flex' },
             flexDirection: 'column',
             alignItems: 'center',
             animation: 'bounce 2s infinite',
             cursor: 'pointer',
             '@keyframes bounce': {
-              '0%, 20%, 50%, 80%, 100%': {
-                transform: 'translateX(-50%) translateY(0)',
-              },
-              '40%': {
-                transform: 'translateX(-50%) translateY(-10px)',
-              },
-              '60%': {
-                transform: 'translateX(-50%) translateY(-5px)',
-              },
+              '0%, 20%, 50%, 80%, 100%': { transform: 'translateX(-50%) translateY(0)' },
+              '40%': { transform: 'translateX(-50%) translateY(-10px)' },
+              '60%': { transform: 'translateX(-50%) translateY(-5px)' },
             },
           }}
           onClick={scrollToExperience}
         >
           <Typography variant="body2" sx={{ mb: 1, color: 'text.secondary' }}>
-            Scroll down
+            {hero.scrollDown}
           </Typography>
           <ArrowDownIcon sx={{ color: 'primary.main' }} />
         </Box>
