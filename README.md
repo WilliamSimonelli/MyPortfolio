@@ -1,112 +1,85 @@
-# William Simonelli - Portfolio Website
+# William Simonelli — Portfolio
 
-A modern, responsive portfolio website built with React.js and Material-UI, showcasing my professional experience, skills, and projects.
+Personal portfolio website built with React, Vite, and Material-UI.
 
-## 🌟 Features
+**Live:** [williamsimonelli.github.io/MyPortfolio](https://williamsimonelli.github.io/MyPortfolio)
 
-- **Modern Design**: Clean, professional design inspired by contemporary portfolio websites
-- **Responsive**: Fully responsive design that works on all devices
-- **Single Page Application**: Smooth scrolling navigation between sections
-- **Timeline Layout**: Interactive timeline showcasing professional experience
-- **GitHub Integration**: Dynamically displays projects from GitHub
-- **Material-UI**: Consistent design system with beautiful animations
-- **Dark Theme**: Modern dark theme with gradient accents
-- **SEO Optimized**: Proper meta tags and structured data
+## Stack
 
-## 🛠️ Tech Stack
+- React 19 + Vite 7
+- Material-UI (MUI) v7 + Emotion
+- Fontsource (Poppins, Roboto)
 
-- **Frontend**: React 18, JavaScript
-- **UI Framework**: Material-UI (MUI)
-- **Build Tool**: Vite
-- **Styling**: CSS3, Material-UI theming
-- **Fonts**: Poppins (Google Fonts)
-- **Icons**: Material-UI Icons
-- **Timeline**: MUI Lab Timeline components
+## Sections
 
-## 🚀 Getting Started
+- **Hero** — intro, skills chips, social links
+- **Timeline** — work & education history
+- **Skills** — categorized skill bars + certifications
+- **Projects** — GitHub repos showcase
+- **Contact** — form + contact info
 
-### Prerequisites
+## Development
 
-- Node.js (version 20.19.0 or higher recommended)
-- npm or yarn
-
-### Installation
-
-1. Clone the repository:
-```bash
-git clone https://github.com/WilliamSimonelli/portfolio.git
-cd portfolio
-```
-
-2. Install dependencies:
 ```bash
 npm install
+npm run dev        # http://localhost:5173
 ```
 
-3. Start the development server:
-```bash
-npm run dev
-```
-
-4. Open your browser and visit `http://localhost:5173`
-
-### Building for Production
+## Build
 
 ```bash
-npm run build
+npm run build      # output → dist/
+npm run preview    # preview the build locally
 ```
 
-The build artifacts will be stored in the `dist/` directory.
+## Deploy
 
-## 📱 Sections
+### GitHub Pages
 
-- **Hero**: Introduction with profile picture and key skills
-- **Experience**: Professional timeline with work history and education
-- **Skills**: Technical skills organized by categories with progress bars
-- **Projects**: Featured projects with GitHub integration
-- **Contact**: Contact form and social media links
+```bash
+npm run deploy
+```
 
-## 🎨 Customization
-
-### Theme
-
-The theme can be customized in `src/theme.js`. The current theme features:
-- Primary color: Cyan (#00D4FF)
-- Secondary color: Orange (#FF6B35)
-- Dark background with gradient accents
-- Poppins font family
-
-### Content
-
-Update personal information in the respective component files:
-- `src/components/Hero.jsx` - Personal introduction
-- `src/components/Timeline.jsx` - Work experience and education
-- `src/components/Skills.jsx` - Technical skills
-- `src/components/Projects.jsx` - Featured projects
-- `src/components/Contact.jsx` - Contact information
-
-## 📧 Contact
-
-- **Email**: williamsimonelli10@gmail.com
-- **GitHub**: [@WilliamSimonelli](https://github.com/WilliamSimonelli)
-- **LinkedIn**: [william-simonelli](https://linkedin.com/in/william-simonelli)
-- **Location**: São Paulo, Brazil
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
+Configured via `homepage` in `package.json` and `base: '/MyPortfolio/'` in `vite.config.js`.
 
 ---
 
-Built with ❤️ by William Simonelli+ Vite
+### VPS via Dokploy (recommended)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The project includes a `Dockerfile` + `nginx.conf` for serving the static build with Nginx.
 
-Currently, two official plugins are available:
+#### Setup on Hostinger VPS (Ubuntu)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. **Install Dokploy** on your VPS:
 
-## Expanding the ESLint configuration
+```bash
+curl -sSL https://dokploy.com/install.sh | sh
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Access the Dokploy dashboard at `http://<your-vip-ip>:3000`.
+
+2. **Create a new Application** in Dokploy:
+   - Type: **Application**
+   - Source: GitHub (connect your repo `WilliamSimonelli/MyPortfolio`)
+   - Build type: **Dockerfile**
+   - Branch: `master`
+
+3. **Configure domain** in Dokploy:
+   - Add your domain (e.g., `portfolio.yourdomain.com`)
+   - Enable HTTPS (Dokploy provisions Let's Encrypt automatically)
+
+4. **Deploy** — click Deploy or push to `master` to trigger auto-deploy.
+
+The `Dockerfile` builds the app with `VITE_BASE_PATH=/` so all routes are served from the root of your domain.
+
+#### Local Docker test
+
+```bash
+docker build -t portfolio .
+docker run -p 8080:80 portfolio
+# open http://localhost:8080
+```
+
+## License
+
+MIT
