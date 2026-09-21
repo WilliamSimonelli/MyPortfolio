@@ -25,7 +25,7 @@ const translations = {
         {
           title: 'Software Engineer',
           company: 'DevFuture',
-          period: '2026 – Present',
+          period: '09/2026 – Present',
           description:
             'Building scalable cloud-native systems and automation solutions. Designing distributed architectures and leading technical initiatives to deliver high-impact solutions across multiple business areas.',
           skills: ['Python', 'TypeScript', 'AWS', 'FastAPI', 'Microservices'],
@@ -34,7 +34,7 @@ const translations = {
         {
           title: 'IT Analyst',
           company: 'BTG Pactual',
-          period: '01/2026 – 2026',
+          period: '01/2026 – 09/2026',
           description:
             'Worked with cloud architecture, designing and implementing scalable and high-performance systems. Led ecosystem migration initiatives, moving applications across new cloud accounts. Modernized legacy applications into robust microservices-based architectures and provided technical leadership across projects.',
           skills: ['AWS', 'Python', 'TypeScript', 'Distributed Systems', 'Microservices'],
@@ -207,7 +207,7 @@ const translations = {
         {
           title: 'Engenheiro de Software',
           company: 'DevFuture',
-          period: '2026 – Presente',
+          period: '09/2026 – Presente',
           description:
             'Construindo sistemas cloud-native escaláveis e soluções de automação. Projetando arquiteturas distribuídas e liderando iniciativas técnicas para entregar soluções de alto impacto em múltiplas áreas de negócio.',
           skills: ['Python', 'TypeScript', 'AWS', 'FastAPI', 'Microsserviços'],
@@ -216,7 +216,7 @@ const translations = {
         {
           title: 'Analista de TI',
           company: 'BTG Pactual',
-          period: '01/2026 – 2026',
+          period: '01/2026 – 09/2026',
           description:
             'Atuação com arquitetura cloud, projetando e implementando sistemas escaláveis e de alta performance. Liderança de iniciativas de migração de ecossistema e modernização de aplicações legadas em arquiteturas baseadas em microsserviços, com liderança técnica em projetos estratégicos.',
           skills: ['AWS', 'Python', 'TypeScript', 'Sistemas Distribuídos', 'Microsserviços'],
