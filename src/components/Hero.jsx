@@ -72,18 +72,25 @@ import profilePhoto from '../assets/portfolio-photo.jpeg';const Hero = () => {
         >
           {/* Avatar */}
           <Zoom in={isVisible} timeout={1000}>
-            <Avatar
-              src={profilePhoto}
-              alt="William Simonelli"
+            <Box
               sx={{
-                width: { xs: 200, md: 300 },
-                height: { xs: 200, md: 300 },
-                border: '4px solid',
-                borderImageSource: 'linear-gradient(45deg, #00D4FF, #FF6B35)',
-                borderImageSlice: 1,
+                borderRadius: '50%',
+                padding: '4px',
+                background: 'linear-gradient(45deg, #00D4FF, #FF6B35)',
                 boxShadow: '0 20px 40px rgba(0, 212, 255, 0.3)',
+                flexShrink: 0,
               }}
-            />
+            >
+              <Avatar
+                src={profilePhoto}
+                alt="William Simonelli"
+                sx={{
+                  width: { xs: 200, md: 300 },
+                  height: { xs: 200, md: 300 },
+                  display: 'block',
+                }}
+              />
+            </Box>
           </Zoom>
 
           {/* Content */}
